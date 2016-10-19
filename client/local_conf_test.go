@@ -3,7 +3,6 @@ package client
 import (
 	"log"
 	"testing"
-	"time"
 )
 
 type sample struct {
@@ -40,6 +39,10 @@ func TestLocalConf(t *testing.T) {
 		}()
 	}
 
-	log.Print("please edit file then you can see the notify in 1 minutes")
-	time.Sleep(1 * time.Minute)
+	/*
+		uncomment below to check update logic
+
+		log.Print("please edit file then you can see the notify in 1 minutes")
+		time.Sleep(1 * time.Minute)
+	*/
 }

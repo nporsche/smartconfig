@@ -14,7 +14,6 @@ func NewLocalMeConf(path string) MeConf {
 	return newLocalConf(path)
 }
 
-func NewRemoteMeConf(addresses []string) MeConf {
-	//TODO:
-	return nil
+func NewRemoteMeConf(addresses []string, path string) MeConf {
+	return newRemoteEtcdMeConf(addresses, path)
 }
