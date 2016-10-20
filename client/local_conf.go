@@ -61,10 +61,6 @@ func (lc *localConf) Notify() (event <-chan *Event, err error) {
 	return ev, nil
 }
 
-func (lc *localConf) Close() {
-	lc.watcher.Close()
-}
-
 func (lc *localConf) monitor() error {
 	var err error
 	lc.watcher, err = fsnotify.NewWatcher()

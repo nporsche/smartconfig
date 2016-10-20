@@ -48,7 +48,6 @@ func (rc *remoteEtcdMeConf) LoadObject(objectName string, v interface{}) error {
 		return err
 	}
 
-	log.Println(resp)
 	if strings.HasSuffix(objectName, ".toml") {
 		_, err = toml.Decode(resp.Node.Value, v)
 		return err
@@ -64,10 +63,6 @@ func (rc *remoteEtcdMeConf) Notify() (event <-chan *Event, err error) {
 	rc.subscribers = append(rc.subscribers, ev)
 
 	return ev, nil
-}
-
-func (rc *remoteEtcdMeConf) Close() {
-
 }
 
 func (rc *remoteEtcdMeConf) monitor() error {
@@ -90,7 +85,7 @@ func (rc *remoteEtcdMeConf) monitor() error {
 					}
 				}
 			} else {
-				log.Println(err)
+				//log.Println(err)
 			}
 		}
 	}()

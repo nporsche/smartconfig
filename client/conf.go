@@ -7,7 +7,6 @@ type Event struct {
 type MeConf interface {
 	LoadObject(objectName string, v interface{}) (err error)
 	Notify() (event <-chan *Event, err error)
-	Close()
 }
 
 func NewLocalMeConf(path string) MeConf {
