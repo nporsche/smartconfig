@@ -1,13 +1,15 @@
 package client
 
 import (
-	"context"
+	//	"context"
 	"encoding/json"
 	"fmt"
 	"log"
 	"path"
 	"strings"
 	"time"
+
+	"golang.org/x/net/context"
 
 	"github.com/BurntSushi/toml"
 	etcd "github.com/coreos/etcd/client"
