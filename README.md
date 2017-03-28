@@ -34,7 +34,7 @@ if ev, err := mc.Notify(); err != nil {
 package main
 
 import (
-     "github.com/Meiqia/SmartConf/client"
+     "github.com/nporsche/SmartConf/client"
      "log"
      "time"
 )
@@ -110,7 +110,7 @@ if ev, err := mc.Notify(); err != nil {
 package main
 
 import (
-    "github.com/Meiqia/SmartConf/client"
+    "github.com/nporsche/SmartConf/client"
     "log"
     "time"
 )
