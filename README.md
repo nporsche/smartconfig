@@ -2,10 +2,10 @@
 smartconf是提供配置服务的SDK, 提供本地或者remote etcd的配置信息装载以及配置更改事件，方便使用者实现配置文件热加载。
 
 ##本地配置文件  
-创建meconf对象,传入本地path:
+创建SmartConf对象,传入本地path:
 
 ```
-client.NewLocalMeConf("./");
+client.NewLocalSmartConf("./");
 ```
 将本地的文件装载成内存对象，对象由调用者自己定义,第一个参数是path路径下的文件名,必须以.toml和.json结尾:
 
@@ -34,7 +34,7 @@ if ev, err := mc.Notify(); err != nil {
 package main
 
 import (
-     "github.com/Meiqia/meconf/client"
+     "github.com/Meiqia/SmartConf/client"
      "log"
      "time"
 )
@@ -45,7 +45,7 @@ type sample struct {
 }
 
 func main() {
-    mc := client.NewLocalMeConf("./")
+    mc := client.NewLocalSmartConf("./")
     var jsObj sample
     if err := mc.LoadObject("local_conf_sample.json", &jsObj); err != nil {
         log.Fatal(err)
@@ -77,10 +77,10 @@ func main() {
 ```
 
 ##远程配置
-创建meconf对象,传入etcd endpoints例如http://127.0.0.1:2379,第二个参数是etcd中的path:
+创建SmartConf对象,传入etcd endpoints例如http://127.0.0.1:2379,第二个参数是etcd中的path:
 
 ```
-client.NewRemoteMeConf([]string{"http://127.0.0.1:2379"}, "/config/proj1");
+client.NewRemoteSmartConf([]string{"http://127.0.0.1:2379"}, "/config/proj1");
 ```
 将path下的对象装载成内存对象，对象由调用者自己定义，第一个参数是etcd中在该path下的key,必须以.toml和.json结尾:
 
@@ -110,7 +110,7 @@ if ev, err := mc.Notify(); err != nil {
 package main
 
 import (
-    "github.com/Meiqia/meconf/client"
+    "github.com/Meiqia/SmartConf/client"
     "log"
     "time"
 )
@@ -121,7 +121,7 @@ type sample struct {
 }
 
 func main() {
-    mc := client.NewRemoteMeConf([]string{"http://127.0.0.1:2379"}, "/config/proj1")
+    mc := client.NewRemoteSmartConf([]string{"http://127.0.0.1:2379"}, "/config/proj1")
     var jsonObj sample
     if err := mc.LoadObject("sample.json", &jsonObj); err != nil {
         log.Fatal(err)

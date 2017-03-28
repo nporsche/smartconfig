@@ -4,15 +4,15 @@ type Event struct {
 	Name string
 }
 
-type MeConf interface {
+type SmartConf interface {
 	LoadObject(objectName string, v interface{}) (err error)
 	Notify() (event <-chan *Event, err error)
 }
 
-func NewLocalMeConf(path string) MeConf {
+func NewLocalSmartConf(path string) SmartConf {
 	return newLocalConf(path)
 }
 
-func NewRemoteMeConf(addresses []string, path string) MeConf {
-	return newRemoteEtcdMeConf(addresses, path)
+func NewRemoteSmartConf(addresses []string, path string) SmartConf {
+	return newRemoteEtcdSmartConf(addresses, path)
 }

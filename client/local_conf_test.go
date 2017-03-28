@@ -11,7 +11,7 @@ type sample struct {
 }
 
 func TestLocalConf(t *testing.T) {
-	mc := NewLocalMeConf("./")
+	mc := NewLocalSmartConf("./")
 	var jsObj sample
 	if err := mc.LoadObject("local_conf_sample.json", &jsObj); err != nil {
 		t.Fatal(err)

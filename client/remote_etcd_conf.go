@@ -15,14 +15,14 @@ import (
 	etcd "github.com/coreos/etcd/client"
 )
 
-type remoteEtcdMeConf struct {
+type remoteEtcdSmartConf struct {
 	etcdClient  etcd.Client
 	path        string
 	subscribers []chan *Event
 }
 
-func newRemoteEtcdMeConf(endPoints []string, path string) *remoteEtcdMeConf {
-	rc := &remoteEtcdMeConf{
+func newRemoteEtcdSmartConf(endPoints []string, path string) *remoteEtcdSmartConf {
+	rc := &remoteEtcdSmartConf{
 		path:        path,
 		subscribers: make([]chan *Event, 0),
 	}
@@ -43,7 +43,7 @@ func newRemoteEtcdMeConf(endPoints []string, path string) *remoteEtcdMeConf {
 	return rc
 }
 
-func (rc *remoteEtcdMeConf) LoadObject(objectName string, v interface{}) error {
+func (rc *remoteEtcdSmartConf) LoadObject(objectName string, v interface{}) error {
 	api := etcd.NewKeysAPI(rc.etcdClient)
 	resp, err := api.Get(context.Background(), path.Join(rc.path, objectName), nil)
 	if err != nil {
@@ -60,14 +60,14 @@ func (rc *remoteEtcdMeConf) LoadObject(objectName string, v interface{}) error {
 	}
 }
 
-func (rc *remoteEtcdMeConf) Notify() (event <-chan *Event, err error) {
+func (rc *remoteEtcdSmartConf) Notify() (event <-chan *Event, err error) {
 	ev := make(chan *Event, 1)
 	rc.subscribers = append(rc.subscribers, ev)
 
 	return ev, nil
 }
 
-func (rc *remoteEtcdMeConf) monitor() error {
+func (rc *remoteEtcdSmartConf) monitor() error {
 	api := etcd.NewKeysAPI(rc.etcdClient)
 	wo := &etcd.WatcherOptions{Recursive: true}
 	watcher := api.Watcher(rc.path, wo)
