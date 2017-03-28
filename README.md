@@ -1,5 +1,5 @@
-# meconf
-meconf是美洽配置SDK, 提供本地或者remote etcd的配置信息装载以及配置更改事件，方便使用者实现配置文件热加载。
+# smartconf
+smartconf是提供配置服务的SDK, 提供本地或者remote etcd的配置信息装载以及配置更改事件，方便使用者实现配置文件热加载。
 
 ##本地配置文件  
 创建meconf对象,传入本地path:
